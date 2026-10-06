@@ -22,7 +22,7 @@ class ExtendedInterpreter(ast.NodeVisitor):
             raise ValueError(f"Unsupported operation: {type(node.op)}")
 
     def visit_Num(self, node):
-        return node.n
+        return node.value  # Виправлено! (див ряд 19 ex1.py)
 
     def visit_UnaryOp(self, node):
         operand = self.visit(node.operand)
@@ -47,3 +47,4 @@ if __name__ == '__main__':
     print(interpreter.interpret("10 / 2"))  # Виведе: 5.0
     print(interpreter.interpret("2 ** 3 + (1 - 3)"))  # Виведе: 6
     print(interpreter.interpret("-3 + 5"))  # Виведе: 2
+    print(interpreter.interpret("(2 + 3) * 4"))  # Виведе: 20
